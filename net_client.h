@@ -49,7 +49,6 @@ namespace lbs
             {
                 signal(SIGPIPE, SIG_IGN);
 
-                //socket_.init("cq01-rdqa-dev073.cq01.baidu.com", 10001); 
                 if (0 != socket_.init(host, port))
                 {
                     printf("client init error\n");
