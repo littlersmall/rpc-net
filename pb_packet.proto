@@ -1,0 +1,13 @@
+package pb_net;
+message PbPacket
+{
+    required string packet_code = 1;
+    required string uuid = 2;
+    required int32 send_time = 3;
+    optional string stat = 4;
+    optional string lock_name = 5;
+    optional string memo = 6;
+    optional string json_str = 7;
+    optional int32 id = 8;
+    optional string email = 9;
+}
