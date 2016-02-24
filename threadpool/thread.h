@@ -16,42 +16,30 @@
  *  
  **/
 
-
 #ifndef  __THREAD_H_
 #define  __THREAD_H_
-
 #include <pthread.h>
-
 namespace lbs
 {
     namespace common
     {
-        //线程对象封装
         class Thread;
-
-        /*
-         * 类似回调函数
-         * run()函数为回调函�?         */
+        
         class Runnable
         {
             public:
             
             virtual void run(Thread* thread) = 0;
-
             virtual ~Runnable() {};
         };
-
-        /*
-         * 线程对象
-         * 使用静态函数实�?         */
+        
         class Thread
         {
             pthread_t tid_;
             Runnable* runnable_;
             int thread_index_;
-
             /**
-             * @brief arg �?this
+             * @brief
              *
              * @param [in] arg   : void*
              * @return  void* 
@@ -60,15 +48,13 @@ namespace lbs
             static void* callback(void* arg)
             {
                 Thread* thread = (Thread*) arg;
-
                 if (thread->get_runnable())
                 {
                     thread->get_runnable()->run(thread); 
                 }
-
                 return (void*) NULL;
             }
-
+            
             public:
              
             Thread()
@@ -79,7 +65,7 @@ namespace lbs
             }
             
             /**
-             * @brief 根据thread_index指定线程做不同的事情
+             * @brief
              *
              * @param [in] index   : int
              * @return  void 
@@ -89,7 +75,7 @@ namespace lbs
             {
                 thread_index_ = index;
             }
-
+            
             /**
              * @brief 
              *
@@ -100,7 +86,7 @@ namespace lbs
             {
                 return thread_index_;
             }
-
+            
             /**
              * @brief callback
              *
@@ -111,14 +97,14 @@ namespace lbs
             {
                 return runnable_;
             }
-
+            
             pthread_t get_tid()
             {
                 return tid_;
             }
-
+            
             /**
-             * @brief this作为参数，this->runnable作为回调函数
+             * @brief 
              *
              * @param [in] runnable   : Runnable*
              * @return  int 
@@ -127,10 +113,9 @@ namespace lbs
             int start(Runnable* runnable)
             {
                 runnable_ = runnable;
-
                 return pthread_create(&tid_, NULL, Thread::callback, this);
             }
-
+            
             void join()
             {
                 if (tid_)
@@ -143,21 +128,22 @@ namespace lbs
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #endif  //__THREAD_H_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* vim: set ts=4 sw=4 sts=4 tw=100 */
