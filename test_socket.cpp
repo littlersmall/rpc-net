@@ -29,7 +29,7 @@ namespace lbs
             public:
             void test()
             {
-                NetClient socket("cq01-rdqa-dev073.cq01.baidu.com", 10001);
+                NetClient socket("127.0.0.1", 10001);
 
                 socket.start();
                 sleep(1);
